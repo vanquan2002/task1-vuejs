@@ -11,33 +11,47 @@
           <b-nav-item to="/about">About</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
-          <search-product />
+          <b-nav-item 
+            id="show-btn" 
+            @click="$bvModal.show('bv-modal-example')">
+            <b-icon class="" icon="search"></b-icon>
+          </b-nav-item>
+          <b-modal id="bv-modal-example" hide-footer>
+            <template #modal-title>
+              Search
+            </template>
+              <search-product 
+              v-on:close-modal-search="$bvModal.hide('bv-modal-example')">
+              </search-product>
+          </b-modal>
+
           <b-nav-item-dropdown right v-if="userData">
             <template #button-content>
               <em>{{ userData.username }}</em>
             </template>
             <b-dropdown-item @click="logOut" href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
+          
           <b-nav-item
-            id="show-btn"
-            @click="$bvModal.show('bv-modal-example')"
+            id="show-btn-2"
+            @click="$bvModal.show('bv-modal-example-2')"
             v-else
           >
             <template>
               <em>Login</em>
             </template>
           </b-nav-item>
-          <b-modal id="bv-modal-example" hide-footer>
+          <b-modal id="bv-modal-example-2" hide-footer>
             <template #modal-title> Login </template>
             <div class="d-block">
               <form-logIn
-                v-on:close-modal="$bvModal.hide('bv-modal-example')"
+                v-on:close-modal="$bvModal.hide('bv-modal-example-2')"
               ></form-logIn>
             </div>
             <b-button
               class="mt-3"
               block
-              @click="$bvModal.hide('bv-modal-example')"
+              @click="$bvModal.hide('bv-modal-example-2')"
               >Close Me</b-button
             >
           </b-modal>
@@ -69,6 +83,18 @@ export default {
       this.$store.commit("logOut");
       this.makeToast("info", "Signed out successfully!");
     },
+    openModal1() {
+    this.$refs.modalExample1.show();
+    },
+    openModal2() {
+      this.$refs.modalExample2.show();
+    },
+    closeModal1() {
+      this.$refs.modalExample1.hide();
+    },
+    closeModal2() {
+      this.$refs.modalExample2.hide();
+    }
   },
   computed: {
     numberCart() {

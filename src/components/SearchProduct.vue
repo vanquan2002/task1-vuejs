@@ -6,7 +6,8 @@
         :value="textSearch"
         @input="setTextSearch"
         class="mr-sm-2"
-        placeholder="Search"
+        placeholder="Enter the product you want to search for..."
+        ref="focusInput"
       />
     </b-nav-form>
     <div :class="['search-results', objectClass]">
@@ -16,7 +17,7 @@
           :key="product.id"
           @click="closeSearch"
         >
-          <router-link tag="div" :to="'/detail/' + product.id" variant="primary"
+          <router-link tag="div" :to="'/detail/' + product.id"
             >{{ product.title }}
           </router-link>
         </li>
@@ -45,6 +46,7 @@ export default {
     closeSearch() {
       this.textSearch = "";
       this.isActive = false;
+      this.$emit("close-modal-search");
     },
   },
   computed: {
@@ -63,27 +65,35 @@ export default {
       };
     },
   },
+  created () {
+    setTimeout(() => {
+      if (this.$refs.focusInput) {
+        this.$refs.focusInput.focus();
+      }
+    }, 100);
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .box-search {
-  margin-top: 3px;
-  margin-right: 10px;
+  width: 100%;
+  height: 20px;
 }
 .box-search input {
-  padding: 4px;
+  position: absolute;
+  right: 0;
+  left: 0;
   border: none;
+  border-bottom: 2px solid #17a2b8;
   outline: none;
-  border-radius: 3px;
+  padding: 5px;
+  margin: 0 10px;
 }
 .search-results {
   position: absolute;
-  margin: 0 20px;
-  top: 80px;
+  top: 70px;
   right: 0px;
-  max-width: 800px;
-  z-index: 20;
   display: none;
 }
 .search-results.activeSearch {
@@ -92,7 +102,6 @@ export default {
 .search-results ul {
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 1px 1px 10px #d1d1d1;
 }
 .search-results li {
   list-style-type: none;
