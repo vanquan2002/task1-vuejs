@@ -78,7 +78,7 @@ export default {
 <style lang="scss" scoped>
 .box-search {
   width: 100%;
-  height: 20px;
+  height: 30px;
 }
 .box-search input {
   position: absolute;
@@ -89,10 +89,11 @@ export default {
   outline: none;
   padding: 5px;
   margin: 0 10px;
+  margin-top: 30px;
 }
 .search-results {
   position: absolute;
-  top: 70px;
+  top: 80px;
   right: 0px;
   display: none;
 }
