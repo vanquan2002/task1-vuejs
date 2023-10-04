@@ -28,15 +28,15 @@
               </b-card>
 
               <b-row>
-                <b-col cols="6">
-                  <button class="btn-back-home" @click="backToHome">
-                    Back to home
-                  </button>
-                </b-col>
-                <b-col cols="6">
-                  <button class="btnAddCard" @click="addToCart">
-                    Add to cart
-                  </button>
+                <b-col cols="12">
+                  <div class="control-btn">
+                    <button class="btn-back-home" @click="backToHome">
+                      Back to home
+                    </button>
+                    <button class="btnAddCard" @click="addToCart">
+                      Add to cart
+                    </button>
+                  </div>
                 </b-col>
               </b-row>
             </b-card>
@@ -90,6 +90,10 @@ export default {
 .cart-detail {
   margin-top: 50px;
 }
+.control-btn{
+  display: flex;
+  justify-content: space-between;
+}
 .btn-back-home {
   margin-top: 20px;
   background-color: #17a2b8;
@@ -104,7 +108,6 @@ export default {
 }
 .btnAddCard {
   margin-top: 20px;
-  margin-left: 158px;
   background-color: #17a2b8;
   color: #fff;
   border: none;

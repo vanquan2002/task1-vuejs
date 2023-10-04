@@ -48,7 +48,7 @@
         </b-tbody>
         <b-tfoot>
           <b-tr>
-            <b-td colspan="5" class="text-right text-total">
+            <b-td colspan="6" class="text-right text-total">
               Total Product: <b>{{ getListProductCard.length }}</b>
             </b-td>
           </b-tr>
